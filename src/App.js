@@ -4,7 +4,10 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Radio, { RadioGroup } from 'material-ui/Radio';
-import { FormLabel, FormControl, FormControlLabel, FormHelperText } from 'material-ui/Form';
+import { FormLabel, FormControl, FormControlLabel, FormHelperText,
+  FormGroup, } from 'material-ui/Form';
+import Checkbox from 'material-ui/Checkbox';
+
 // import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 // import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 
@@ -29,6 +32,9 @@ const styles = theme => ({
   input: {
     display: 'none',
   },
+  gilad: true,
+  jason: false,
+  antoine: true,
 });
 
 /* <RaisedButton label="Default" /> */
@@ -52,8 +58,12 @@ class App extends Component {
     value: '',
   };
 
-  handleChange = (event, value) => {
+  handleChangeRadio = (event, value) => {
     this.setState({ value });
+  };
+
+  handleChangeCheck = name => (event, checked) => {
+    this.setState({ [name]: checked });
   };
 
   render() {
@@ -95,7 +105,7 @@ class App extends Component {
                 name="gender1"
                 className={classes.group}
                 value={this.state.value}
-                onChange={this.handleChange}
+                onChange={this.handleChangeRadio}
               >
                 <FormControlLabel value="male" control={<Radio />} label="Male" />
                 <FormControlLabel value="female" control={<Radio />} label="Female" />
@@ -105,6 +115,48 @@ class App extends Component {
             </FormControl>
           </div>
         </div>
+
+        <div>
+          <h1>checkbox test</h1>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Assign responsibility</FormLabel>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={this.state.gilad}
+                    onChange={this.handleChangeCheck('gilad')}
+                    value="gilad"
+                  />
+                }
+                label="Gilad Gray"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={this.state.jason}
+                    onChange={this.handleChangeCheck('jason')}
+                    value="jason"
+                  />
+                }
+                label="Jason Killian"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={this.state.antoine}
+                    onChange={this.handleChangeCheck('antoine')}
+                    value="antoine"
+                  />
+                }
+                label="Antoine Llorca"
+              />
+            </FormGroup>
+            <FormHelperText>Be careful</FormHelperText>
+          </FormControl>
+        </div>
+
+
       </div>
     );
   }
