@@ -157,6 +157,19 @@ class App extends Component {
         </div>
 
 
+        <div>
+          <h1>test buttons</h1>
+          <Button raised className={classes.button}>
+            Default
+          </Button>
+          <Button raised color="primary" className={classes.button}>
+            Primary
+          </Button>
+          <Button raised color="accent" className={classes.button}>
+            Accent
+          </Button>
+        </div>
+
       </div>
     );
   }
